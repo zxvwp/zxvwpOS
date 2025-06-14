@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZXVWP Nation CLI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/dexie@3.2.2/dist/dexie.min.js"></script>
-  <style>
-    body {
-      background: #111;
-      color: #0f0;
-      font-family: monospace;
-      padding: 10px;
-    }
-    input {
-      width: 100%;
-      background: #000;
-      color: #0f0;
-      border: none;
-      border-top: 1px solid #0f0;
-      padding: 10px;
-      font-family: monospace;
-    }
-    #log {
-      white-space: pre-wrap;
-      margin-bottom: 10px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZXVWP CLI Economy Simulator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="log"></div>
-  <input id="cli" placeholder="Type command..." autofocus autocomplete="off" />
+  <pre id="cli" contenteditable="true" autofocus spellcheck="false"></pre>
+
+  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
   <script src="main.js"></script>
+  <script>
+    const cli = document.getElementById('cli');
+    cli.focus();
+
+    cli.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const input = cli.innerText.trim().split('\n').pop();
+        dispatch(input.trim().toLowerCase());
+        setTimeout(() => cli.scrollIntoView(false), 10);
+      }
+    });
+
+    function println(text, type = 'log') {
+      const line = document.createElement('div');
+      line.textContent = text;
+      if (type === 'err') line.style.color = 'red';
+      cli.appendChild(line);
+    }
+
+    println("🌐 Welcome to ZXVWP os");
+    println("Type `help` for commands.");
+  </script>
 </body>
 </html>
