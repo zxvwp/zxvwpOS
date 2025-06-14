@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZXVWP OS</title>
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+    #cli {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    #input {
+      border: none;
+      padding: 12px;
+      background: #222;
+      color: #eee;
+      font-family: monospace;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .cmd { color: #0f0; }
+    .sys { color: #0af; }
+    .err { color: #f55; }
+  </style>
+</head>
+<body>
+  <div id="cli"></div>
+  <input id="input" autocomplete="off" placeholder="Type a command..." />
+  <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
