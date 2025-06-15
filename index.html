@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZXVWP CLI Economy Simulator</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>ZXVWP os</title>
+  <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.3/dist/dexie.min.js"></script>
+  <script defer src="main.js"></script>
+  <style>
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      margin: 0;
+      padding: 10px;
+    }
+    #cli {
+      white-space: pre-wrap;
+      overflow-y: auto;
+      height: 95vh;
+    }
+    input {
+      background: black;
+      color: #0f0;
+      font-family: monospace;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-  <pre id="cli" contenteditable="true" autofocus spellcheck="false"></pre>
-
-  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
-  <script src="main.js"></script>
-  <script>
-    const cli = document.getElementById('cli');
-    cli.focus();
-
-    cli.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const input = cli.innerText.trim().split('\n').pop();
-        dispatch(input.trim().toLowerCase());
-        setTimeout(() => cli.scrollIntoView(false), 10);
-      }
-    });
-
-    function println(text, type = 'log') {
-      const line = document.createElement('div');
-      line.textContent = text;
-      if (type === 'err') line.style.color = 'red';
-      cli.appendChild(line);
-    }
-
-    println("🌐 Welcome to ZXVWP os");
-    println("Type `help` for commands.");
-  </script>
+  <div id="cli">
+                ZXVWP os
+    Type "help" for list of commands.
+    ---------------------------------
+  </div>
+  <input id="input" autofocus />
 </body>
 </html>
